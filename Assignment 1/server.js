@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const taskRouter = require("./routes/tasks");
+const userRouter = require('./routes/users')
+const authRouter = require('./routes/auth');
 const app = express();
 const port = process.env.PORT;
 const mongo_url = process.env.MONGO_URI;
@@ -17,17 +20,11 @@ mongoose
     console.log(`Unable to connect to database - ${err}`);
   });
 
-app.use((err, req, res, next) => {
-    err.statusCode = err.statusCode || 500;
-    err.status = err.status || 'error';
+app.use('/api/tasks', taskRouter);
+app.use('api/users', userRouter);
+app.use('api/auth', authRouter);
 
-    res.status(err.statusCode).json({
-        status: err.status,
-        message: err.message,
-    })
-});
-
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Simple To Do API");
 });
 
