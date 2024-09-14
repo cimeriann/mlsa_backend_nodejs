@@ -9,7 +9,7 @@ const port = process.env.PORT;
 const mongo_url = process.env.MONGO_URI;
 // const AppError = require('./utils/appError');
 
-
+app.use(express.json());
 // CONNECT DB
 mongoose
   .connect(mongo_url)
