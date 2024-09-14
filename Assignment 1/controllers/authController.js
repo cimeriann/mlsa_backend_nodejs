@@ -3,31 +3,36 @@ const Users = require("../models/User");
 const { errorResponse, successResponse } = require("../utils/appError");
 
 exports.createUser = async (req, res) => {
-  try {
-    const { firstName, lastName, email, password } = req.body;
     try {
-        const user = Users.findOne({email});
-        if (user){
-            return errorResponse(res, StatusCodes.CONFLICT, 'User already exists');
-        }
-    } catch (error) {
-        return errorResponse(res, StatusCodes.BAD_REQUEST, error);
-    }
-    if (!firstName || !email || !password || !lastName) {
+      const { firstName, lastName, email, password } = req.body;
+  
+      // Validate required fields first
+      if (!firstName || !email || !password || !lastName) {
         return errorResponse(res, StatusCodes.BAD_REQUEST, 'All fields are required');
-    }
-    const user = new Users({
+      }
+  
+      // Check if the user already exists
+      const user = await Users.findOne({ email });
+      if (user) {
+        return errorResponse(res, StatusCodes.CONFLICT, 'User already exists');
+      }
+  
+      // Create and save new user
+      const newUser = new Users({
         firstName,
         lastName,
         email,
         password
-    });
-    await user.save();
-    successResponse(res, 201, 'User created successfully', user);
-  } catch (error) {
-    return errorResponse(res, StatusCodes.BAD_REQUEST, error);
-  }
-};
+      });
+      await newUser.save();
+  
+      // Send success response
+      successResponse(res, 201, 'User created successfully', newUser);
+    } catch (error) {
+      return errorResponse(res, StatusCodes.BAD_REQUEST, error.message);
+    }
+  };
+  
 
 exports.login = async (req, res) => {
     try {

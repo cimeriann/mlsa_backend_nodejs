@@ -2,7 +2,7 @@
   "name": "simple-crud",
   "version": "1.0.0",
   "description": "A simple crud to do application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "start:dev": "nodemon server.js",

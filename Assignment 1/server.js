@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const taskRouter = require("./routes/tasks");
+const taskRouter = require("./routes/tasks.js");
 const userRouter = require('./routes/users')
 const authRouter = require('./routes/auth');
 const app = express();
@@ -21,8 +21,8 @@ mongoose
   });
 
 app.use('/api/tasks', taskRouter);
-app.use('api/users', userRouter);
-app.use('api/auth', authRouter);
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 
 app.get("/api", (req, res) => {
   res.send("Simple To Do API");

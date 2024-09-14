@@ -1,6 +1,6 @@
-const mongoose = required('mongoose');
+const mongoose = require('mongoose');
 
-const taskSchema = new mongoose.schema({
+const taskSchema = new mongoose.Schema({
     title: {type: String, required: true},
     description: {type: String, required: false},
     dateCreated: {type: Date, default: Date.now },
@@ -8,6 +8,6 @@ const taskSchema = new mongoose.schema({
     isCompleted: {type: Boolean, default: false}
 });
 
-const Task = mongoose.model('Tasks', taskSchema);
+const Tasks = mongoose.model('Tasks', taskSchema);
 
-export default Task;
+module.exports = Tasks;
