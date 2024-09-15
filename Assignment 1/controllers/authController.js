@@ -44,11 +44,10 @@ exports.login = async (req, res) => {
         if (!user){
             return errorResponse(res, StatusCodes.BAD_REQUEST, 'User not found');
         }
-        const validPassword = await user.comparePassword(password);
-        if (!validPassword){
+        if (user.password !== password){
             return errorResponse(res, StatusCodes.BAD_REQUEST, 'Invalid password');
         }
-        successResponse(res, 200, 'User logged in successfully', user);
+        return successResponse(res, 200, 'User logged in successfully', user);
     }catch(error){
         return errorResponse(res, StatusCodes.BAD_REQUEST, error);
     }
