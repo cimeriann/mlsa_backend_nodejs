@@ -58,7 +58,7 @@ exports.updateTask = async (req, res) =>{
             isPending,
             isCompleted
         }, {new: true});
-
+        successResponse(res, StatusCodes.ACCEPTED, 'Task updated successfully', updatedTask);
     } catch (error) {
         return errorResponse(res, StatusCodes.BAD_REQUEST, error);
     }
