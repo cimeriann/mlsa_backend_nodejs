@@ -1,0 +1,9 @@
+[31m 23-09-2024 16:10:32 error Operation `users.findOne()` buffering timed out after 10000ms [39m
+[31m 25-09-2024 21:25:01 error Error connecting to database [39m
+[31m 25-09-2024 21:25:09 error Error connecting to database [39m
+[31m 25-09-2024 21:26:42 error Error connecting to database [39m
+[31m 25-09-2024 21:27:11 error Error connecting to database [39m
+[31m 26-09-2024 18:04:10 error Error connecting to database [39m
+[31m 26-09-2024 18:13:36 error Error connecting to database [39m
+[31m 26-09-2024 18:13:46 error Error connecting to database [39m
+[31m 26-09-2024 18:13:50 error Error connecting to database [39m
